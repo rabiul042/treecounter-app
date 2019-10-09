@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
@@ -9,7 +9,9 @@ MapboxGL.setAccessToken(
 
 class MapboxMap extends Component {
   state = {
-    pointInView: null
+    pointInView: null,
+    coordinates: null,
+    location: null
   };
 
   componentDidMount() {
@@ -18,7 +20,7 @@ class MapboxMap extends Component {
 
   renderPointInView() {
     if (!this.state.pointInView) {
-      return <Text>Touch map to see xy pixel location</Text>;
+      return <Text>xy</Text>;
     }
 
     return [
@@ -30,19 +32,49 @@ class MapboxMap extends Component {
   onPress = async e => {
     console.log(e);
     const pointInView = await this.map.getPointInView(e.geometry.coordinates);
-    this.setState({ pointInView });
+    this.setState({ pointInView, coordinates: e.geometry.coordinates });
   };
 
   render() {
     return (
-      <MapboxGL.MapView
-        zoomLevel={19}
-        ref={c => (this.map = c)}
-        onPress={this.onPress}
-        style={this.props.mapStyle}
-      >
-        {this.renderPointInView()}
-      </MapboxGL.MapView>
+      <View>
+        <MapboxGL.MapView
+          styleURL={MapboxGL.StyleURL.Street}
+          zoomLevel={11}
+          ref={c => (this.map = c)}
+          onPress={this.onPress}
+          style={this.props.mapStyle}
+          logoEnabled={false}
+          centerCoordinate={[-122.41, 37.79]}
+          compassEnabled
+          showUserLocation
+        >
+          {this.state.pointInView ? (
+            <>
+              <MapboxGL.PointAnnotation
+                id="mylocation"
+                title="test"
+                coordinate={[
+                  this.state.coordinates[0],
+                  this.state.coordinates[1]
+                ]}
+                draggable
+              >
+                <Text>T</Text>
+              </MapboxGL.PointAnnotation>
+              <MapboxGL.Camera
+                zoomLevel={2}
+                centerCoordinate={[
+                  this.state.coordinates[0],
+                  this.state.coordinates[1]
+                ]}
+              />
+            </>
+          ) : (
+            <></>
+          )}
+        </MapboxGL.MapView>
+      </View>
     );
   }
 }

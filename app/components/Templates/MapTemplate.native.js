@@ -52,7 +52,7 @@ export function MapTemplate(locals) {
       >
         {i18n.t('label.get_device_location')}
       </PrimaryButton>
-      <Text>{i18n.t('label.map_under_construction')}</Text>
+      {/* <Text>{i18n.t('label.map_under_construction')}</Text> */}
       <Text>
         {/* {console.log(locals.value.split('geoLatitude=')[1])}
         {console.log(locals.value.split('&')[0].split('=')[1])} */}
