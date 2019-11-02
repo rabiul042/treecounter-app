@@ -3,4 +3,11 @@
 
 target 'TreecounterApp' do
   inherit! :search_paths
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
+  pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
+
+
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
 end

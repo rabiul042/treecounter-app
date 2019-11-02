@@ -23,7 +23,12 @@ export function MapTemplate(locals) {
     : {};
   return (
     <View style={[mapTemplateStyle.mapContainer, borderStyle]}>
-      <MapboxMap mapStyle={{ height: 200, borderRedius: 5 }} />
+      <MapboxMap
+        mapStyle={{
+          height: 200
+          // borderRedius: 5
+        }}
+      />
       <PrimaryButton
         onClick={() => {
           navigator.geolocation.setRNConfiguration({
