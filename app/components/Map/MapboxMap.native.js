@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-import MapboxGL from '@react-native-mapbox-gl/maps';
 import MapView, {
   MAP_TYPES,
   Polygon,
@@ -17,9 +16,9 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 let id = 0;
 
-MapboxGL.setAccessToken(
-  'pk.eyJ1Ijoic2FuamF5LXJhZGFkaXlhOTEiLCJhIjoiY2sxMXgwNWlxMGg0ZDNjcGd4bGNtcHJtdSJ9.qC7IzoEEJ_DFtGzz02nvSw'
-);
+// MapboxGL.setAccessToken(
+//   'pk.eyJ1Ijoic2FuamF5LXJhZGFkaXlhOTEiLCJhIjoiY2sxMXgwNWlxMGg0ZDNjcGd4bGNtcHJtdSJ9.qC7IzoEEJ_DFtGzz02nvSw'
+// );
 
 class MapboxMap extends Component {
   constructor(props) {
@@ -45,7 +44,7 @@ class MapboxMap extends Component {
   };
 
   componentDidMount() {
-    MapboxGL.setTelemetryEnabled(false);
+    // MapboxGL.setTelemetryEnabled(false);
   }
 
   renderPointInView() {
