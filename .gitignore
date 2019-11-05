@@ -58,3 +58,6 @@ buck-out/
 web/prod
 web/server
 app/config/index.js
+ios/._TreecounterApp.xcodeproj
+ios/._TreecounterApp.xcworkspace
+ios/Pods/._Pods.xcodeproj
